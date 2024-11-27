@@ -125,7 +125,7 @@ print(response.text)
 ```
 <h2 align="left"> Metodo Get </h2>
 
-``` Pytho
+``` Python
 import requests
 url = "http:www.siwat.es:8080/api/{Usuarios/JSonImgWeb}"
 payload = {}
