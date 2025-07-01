@@ -6,9 +6,68 @@
 ##
 ## Servicios de salida para realizar pruebas
 ### [Lista de usuarios](http://www.siwat.es:8080/api/Usuarios)  
+## Usuarios: UsuariosService
+``` java
+@Service
+@RequiredArgsConstructor  //crea un constructor para que la variable se inicialice con ese dato la proxima vez
+public class UsuariosService {	
+	private final UsuariosRepository usuariosRepository;	
+    @Autowired
+    public UsuariosService(UsuariosRepository usuariosRepository) {
+        this.usuariosRepository = usuariosRepository;
+    }	
+	public void save(Usuarios usuario) {
+		usuariosRepository.save(usuario);
+	}	
+	public List<Usuarios> findAll(){
+		return usuariosRepository.findAll();
+	}
+	public Optional<Usuarios> findById(String id){
+		return usuariosRepository.findById(id);	
+	}	
+	public Usuarios getUsuarioById(String id) 
+	{ return usuariosRepository.findById(id).orElse(null); }				
+	// eliminar una dato por el id
+	public void deleteById(String id){
+		usuariosRepository.deleteById(id); 		
+	}
+}
+```
 ### [Lista de imagenes guardadas](http://www.siwat.es:8080/api/JSonImgWeb)
+## JSonImgWeb: JSonImgWebService
+``` java
+@RestController
+@RequestMapping("/api/JSonImgWeb")
+public class JSonImgWebService {
+	private final JSonImgWebRepository jSonImgWebRepository;
+	
+    @Autowired
+    public JSonImgWebService(JSonImgWebRepository jSonImgWebRepository) {
+        this.jSonImgWebRepository = jSonImgWebRepository;
+    }
+	
+	public void save(JSonImgWeb jSonImgWeb) {
+		jSonImgWebRepository.save(jSonImgWeb);
+	}
+	
+	public List<JSonImgWeb> findAll(){
+		return jSonImgWebRepository.findAll();
+	}
 
-# Dictionario de unas tablas simples
+	public Optional<JSonImgWeb> findById(String id){
+		return jSonImgWebRepository.findById(id);	
+	}
+	
+	public JSonImgWeb getJSonImgWebById(String id) 
+	{ return jSonImgWebRepository.findById(id).orElse(null); }
+				
+	public void deleteById(String id){
+		jSonImgWebRepository.deleteById(id); 		
+	}
+}
+```
+
+# Diccionario de las tablas
 
  ## Tabla Usuarios
  |    campo   |   tipo   |          descripcion          |
